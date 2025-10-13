@@ -1,0 +1,7 @@
+# Node
+node_modules
+*.log
+.DS_Store
+
+#env
+cypress.env.json
