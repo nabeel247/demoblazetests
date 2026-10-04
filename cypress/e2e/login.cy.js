@@ -9,7 +9,7 @@ describe("Login flow with valid & invalid credentials", () => {
   beforeEach(() => {
     cy.url().should("include", baseUrl);
   });
-  // Negative test execution
+  // Negative test execution for incorrect login
   it("should not allow user to login with invalid credentials", () => {
     cy.loginSession(incorrect_username, incorrect_password);
 
