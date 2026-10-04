@@ -16,7 +16,7 @@ export class CheckoutPage {
       .nameInput()
       .click()
       .clear()
-      .type(name, { delay: 50 })
+      .type(name)
       .should("have.value", name);
     this.elements.countryInput().type(country);
     this.elements.cityInput().type(city);

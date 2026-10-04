@@ -2,6 +2,7 @@ export class CartPage {
   elements = {
     cartLink: () => cy.get("#cartur"),
     placeOrderBtn: () => cy.contains("Place Order"),
+    placeOrderModal: () => cy.get("h5#orderModalLabel")
   };
 
   openCart() {
@@ -10,6 +11,6 @@ export class CartPage {
 
   placeOrder() {
     this.elements.placeOrderBtn().click();
-    cy.wait(1000);
+    this.elements.placeOrderModal().should('be.visible');
   }
 }

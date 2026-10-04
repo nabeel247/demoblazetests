@@ -5,6 +5,7 @@ export class HomePage {
     passwordField: () => cy.get("#loginpassword"),
     loginButton: () => cy.get("button[onclick='logIn()']"),
     logoutButton: () => cy.get("#logout2"),
+    WelcomeUserMsg: () => cy.get("a#nameofuser.nav-link"),
     laptopsCategory: () => cy.get("[onclick=\"byCat('notebook')\"]").click(),
     productItem: () => cy.get('a[href="prod.html?idp_=8"]').first(),
   };
@@ -22,13 +23,12 @@ export class HomePage {
     this.elements.usernameField().type(username);
     this.elements.passwordField().type(password);
     this.elements.loginButton().click();
-    cy.wait(2000);
   }
 
   goToLaptops() {
     this.elements.laptopsCategory().click();
     cy.intercept("POST", "**/bycat").as("loadCategory");
-    cy.wait("@loadCategory", { timeout: 15000 });
+    cy.wait("@loadCategory");
   }
 
   selectProduct() {

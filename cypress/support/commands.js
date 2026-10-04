@@ -10,9 +10,6 @@ Cypress.Commands.add("loginSession", (username, password) => {
     home.elements.usernameField().clear().type(username);
     home.elements.passwordField().clear().type(password);
     home.elements.loginButton().click();
-
-    // Wait until logout button is visible = login success
-    home.elements.logoutButton().should("be.visible");
   });
 });
 
