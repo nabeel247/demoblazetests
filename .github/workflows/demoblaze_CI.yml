@@ -1,0 +1,26 @@
+name: Workflow for Cypress Tests (Manual, Push, Daily @ 8:00 pm Berlin)
+
+on:
+  push:
+    branches: [ master ] # 1. Avoids running on temporary feature branches
+  schedule:
+    - cron: '0 18 * * *'       # 18:00 UTC = 20:00 Berlin Time (CEST)
+  workflow_dispatch:
+
+# 2. Secures the runner by limiting API token permissions to read-only
+permissions:
+  contents: read
+
+jobs:
+  yarn-classic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4   # 3. Upgraded to v4 (Node 20 support, faster)
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6 # 4. Upgraded to v6 (Supports latest Cypress & Node)
+        with:
+          # 5. Automatically uploads videos/screenshots to GitHub UI on failure
+          store_videos: true
+          screenshot: true
