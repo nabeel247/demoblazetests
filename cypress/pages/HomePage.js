@@ -26,9 +26,9 @@ export class HomePage {
   }
 
   goToLaptops() {
+    cy.intercept("POST", "**/bycat").as("laptopCategory");
     this.elements.laptopsCategory().click();
-    cy.intercept("POST", "**/bycat").as("loadCategory");
-    cy.wait("@loadCategory");
+    cy.wait("@laptopCategory");
   }
 
   selectProduct() {
